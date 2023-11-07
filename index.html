@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Style Sheet references -->
     <link rel="stylesheet" href="./css/base-style.css" />
+    <link rel="stylesheet" href="./css/animations.css" />
     <!-- Javascript scripts reference with deference (apply after loading) -->
     <script src="./js/audio.js" defer></script>
+    <script src="./js/animation-manager.js" defer></script>
     <title>Intersectional Observer</title>
   </head>
 
@@ -15,19 +17,28 @@
     <!-- ================================= TITLE ================================= -->
 
     <!-- Title container has an h1 and a button to play some music -->
-    <div class="container green">
+
+    <!-- any div with an animation-related class and class observable will be trigtered by the observer in javascript -->
+    <div class="container green left-to-right observable">
       <h1>Once upon a time...</h1>
       <button id="start-audio">Want Some Music?</button>
     </div>
 
     <!-- ================================= STORY ================================= -->
       <!-- Story containers all have an image with a caption -->
-      <div class="container blue">
-      <img src="pictures/under-skin.webp" />
+
+      <!-- button triggered animation -->
+      <div class="container blue active">
+        <img src="pictures/under-skin.webp" />
+
+        <!-- the animator button is used in the javascript to trigger an animation for this specific div -->
+        <button id="animator"> Animate Me!</button>
+         <!-- the reset button is used in the javascript to reset an animation for this specific div -->
+        <button id="reset-animation">Reset Animation!</button>
       <p>Scarlet Johanson was walking round town killing some bad guys</p>
     </div>
 
-    <div class="container green">
+    <div class="container green bottom-zig-zag observable">
       <img src="./pictures/hp.avif" />
       <p>
         But then Voldemort came and he tried to kill her but she was like nuh ha
@@ -35,7 +46,7 @@
       </p>
     </div>
 
-    <div class="container blue">
+    <div class="container blue right-to-left observable">
       <img src="./pictures/grey-anatomy.webp" />
       <p>
         The medical community was shaken, they couldn't understand what had
