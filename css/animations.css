@@ -1,0 +1,92 @@
+/* 
+ * Keyframes are used to define what an animation will do.
+ * In this keyframe we are translating the element from -100px to 0px in it's horizontal axis
+ * We also change the opacity from 0 to 1 so that it slowly comes into view
+ */
+@keyframes lefttoright {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+/*
+ * We are using a double class selecter to select all html elements with class left-to-right AND active
+ */
+.left-to-right.active {
+    /* animation: lefttoright is linking the selected elements to the keyframes called 'lefttoright' just above */
+    animation: lefttoright;
+    /* animation-duration: 5s tells the css that we want the animation to last for 5 seconds */
+    animation-duration: 5s;
+    /* 
+     * animation-fill-mode: forwards tells the css that once the animation is over, the element should stay on
+     * the last animation frame instead of going back to whatever style it had before.
+     * In this case we are using it to avoid elements recovering 'opacity: 0' at the end of the animation.
+     */
+    animation-fill-mode: forwards;
+}
+
+/* keyframe to define entrance from the right */
+@keyframes righttoleft {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+/* Class selector to link right-to-left class elements to righttoleft keyframe */
+.right-to-left.active {
+    animation: righttoleft;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
+
+/*
+ * Keyframes to describe a zig zag from the bottom
+ * Instead of the 'from' and 'to' keywords, we are now using a percentage escalation that allows us to be more precise with the movement
+ * x axis -> corresopnds to horizontal axis -> negative = left, positive = right
+ * y axis -> corresponds to the vertical axis -> negative = up, positive = down
+*/
+@keyframes bottomzigzag {
+    /* At the beginning of the animation, the element is at position -300px left, 250px righ and opacity: 0, meaning invisible */
+    0% {
+        transform: translateX(-300px) translateY(250px);
+        opacity: 0;
+    }
+    20% {
+        transform: translateX(280px) translateY(225px);
+    }
+    40% {
+        transform: translateX(-260px) translateY(200px);
+    }
+    60% {
+        transform: translateX(240px) translateY(175px);
+    }
+    80% {
+        transform: translateX(-220px) translateY(150px);
+    }
+    /* 
+     * After visiting some other points in the page, at the end of the animation
+     * the element is at its original position and opacity: 1, meaning fully visible 
+     */
+    100% {
+        transform: translateX(0px) translateY(0px);
+        opacity: 1;
+    }
+
+}
+
+/* Class selector to link bottom-zig-zag class elements to bottomzigzag keyframes  */
+.bottom-zig-zag.active {
+    animation: bottomzigzag;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
